@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Central Mart | Contact Us - Eco Grocery Support</title>
+  <!-- Bootstrap 5 + Font Awesome + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2333a55e'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3E📞%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fefaf2; color: #1e2a24; overflow-x: hidden; }
+    h1, h2, h3, h4, .navbar-brand, .btn, .contact-title { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .navbar-surya { background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0; }
+    .contact-hero { background: linear-gradient(125deg, #fef5e8 0%, #eef5e6 100%); padding: 3.5rem 0 3rem; border-radius: 0 0 3rem 3rem; margin-bottom: 3rem; position: relative; overflow: hidden; }
+    .floating-contact-icon { position: absolute; font-size: 5rem; opacity: 0.08; animation: floatContact 16s infinite ease-in-out; pointer-events: none; }
+    @keyframes floatContact { 0% { transform: translateY(0px) rotate(0deg);} 50% { transform: translateY(-25px) rotate(5deg);} 100% { transform: translateY(0px) rotate(0deg);} }
+    .contact-info-card { background: white; border-radius: 1.8rem; padding: 1.8rem; transition: all 0.3s ease; height: 100%; border: 1px solid #f0e6d8; cursor: pointer; }
+    .contact-info-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(44,110,73,0.12); border-color: #cde0cf; }
+    .contact-form-card { background: white; border-radius: 2rem; padding: 2rem; box-shadow: 0 15px 35px -12px rgba(0,0,0,0.05); border: 1px solid #eef2e2; }
+    .form-control-custom { border-radius: 1rem; border: 1px solid #e2e8da; padding: 0.8rem 1.2rem; transition: all 0.2s; }
+    .form-control-custom:focus { border-color: #2c6e49; box-shadow: 0 0 0 3px rgba(44,110,73,0.1); }
+    .btn-contact-submit { background: linear-gradient(100deg, #2a6b46, #3e9f62); border: none; border-radius: 2rem; padding: 0.8rem 2rem; font-weight: 700; color: white; transition: 0.2s; width: 100%; }
+    .btn-contact-submit:hover { transform: scale(0.98); background: linear-gradient(100deg, #1f543a, #2c6e49); }
+    .social-icon-circle { width: 48px; height: 48px; background: #eef5e6; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: 0.2s; cursor: pointer; }
+    .social-icon-circle:hover { background: #2c6e49; color: white; transform: translateY(-3px); }
+    .faq-accordion-item { background: white; border-radius: 1.2rem; margin-bottom: 1rem; border: 1px solid #eef2e2; overflow: hidden; }
+    .faq-question { padding: 1.2rem 1.5rem; cursor: pointer; background: white; font-weight: 600; transition: 0.2s; }
+    .faq-question:hover { background: #fef9ef; }
+    .faq-answer { padding: 0 1.5rem 1.2rem 1.5rem; color: #5a6e5e; display: none; }
+    .faq-answer.show { display: block; }
+    .map-placeholder { background: #e9f0e3; border-radius: 1.5rem; height: 280px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+    .map-placeholder:hover { background: #dee8d4; }
+    @media (max-width: 768px) { .contact-hero { padding: 2rem 0; } .contact-info-card { padding: 1.2rem; } }
+    .footer-surya a { text-decoration: none; color: #cbdecb; transition: 0.2s; }
+    .footer-surya a:hover { color: #f4a261; }
+    .modal-contact-content { border-radius: 2rem; }
+    .alert-success-custom { background: #e3f2e8; border: none; border-radius: 1rem; color: #1e462e; }
+    /* Cart Sidebar Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 420px;
+      max-width: 90%;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1050;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1040;
+      display: none;
+    }
+    .cart-overlay.show { display: block; }
+    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #eef2e2; background: #fefaf2; }
+    .cart-items { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #f0e6d8; }
+    .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-weight: 600; font-size: 0.9rem; }
+    .cart-item-price { color: #2c6e49; font-weight: 600; }
+    .cart-footer { padding: 1.2rem; border-top: 1px solid #eef2e2; background: white; }
+    .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+    .btn-checkout-cart {
+      background: #2c6e49;
+      border: none;
+      border-radius: 40px;
+      padding: 0.8rem;
+      font-weight: 700;
+      color: white;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .btn-checkout-cart:hover { background: #1f543a; transform: scale(0.98); }
+    @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } }
+    .maintenance-modal .modal-content { border-radius: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header with working navigation links and cart -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-2" href="/" style="color: #2c6e49;"><i class="fas fa-store me-2"></i>Central<span style="color:#f4a261;"> Mart</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#suryaNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="suryaNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="shop.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn cart-icon-btn position-relative" id="openCartBtn" style="background: none; border: none; font-size: 1.3rem; color:#2c6e49;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="cartCountBadge" style="background:#f4a261; color:#1e2a24;">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Contact Hero Section -->
+<div class="contact-hero">
+  <div class="floating-contact-icon" style="top: 5%; left: -1%;"><i class="fas fa-envelope"></i></div>
+  <div class="floating-contact-icon" style="bottom: 2%; right: 2%; animation-duration: 19s;"><i class="fas fa-headset"></i></div>
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 text-center text-lg-start">
+        <span class="badge bg-success bg-opacity-25 text-success px-3 py-2 rounded-pill mb-3"><i class="fas fa-heart me-1"></i> We're here for you</span>
+        <h1 class="display-4 fw-bold" style="color:#14382a;">Get in <span style="color:#f4a261;">Touch</span><br>with Our Green Team</h1>
+        <p class="lead mt-3">Have questions about orders, partnerships, or sustainability? Our eco-support team responds within 24 hours.</p>
+        <div class="d-flex gap-3 mt-3 flex-wrap">
+          <div><i class="fas fa-check-circle text-success"></i> 24/7 Chat Support</div>
+          <div><i class="fas fa-check-circle text-success"></i> 100% Human Response</div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&h=450&fit=crop" class="img-fluid rounded-4 shadow-lg" alt="customer support eco grocery">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Contact Info Cards -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="contact-info-card text-center clickable-contact" data-contact="phone">
+        <i class="fas fa-phone-alt fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h4 class="fw-bold">Call Us</h4>
+        <p class="mb-2">+1 (888) 787-7769</p>
+        <small class="text-muted">Mon-Fri, 9AM - 6PM EST</small>
+        <div class="mt-2"><span class="badge bg-light text-success">Click to call →</span></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="contact-info-card text-center clickable-contact" data-contact="email">
+        <i class="fas fa-envelope fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h4 class="fw-bold">Email Us</h4>
+        <p class="mb-2">support@centralmart.com</p>
+        <small class="text-muted">support@centralmart.com</small>
+        <div class="mt-2"><span class="badge bg-light text-success">Click to email →</span></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="contact-info-card text-center clickable-contact" data-contact="visit">
+        <i class="fas fa-map-marker-alt fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h4 class="fw-bold">Visit Our Hub</h4>
+        <p class="mb-2">101 Green Lane, Austin, TX 78701</p>
+        <small class="text-muted">Sustainable headquarters</small>
+        <div class="mt-2"><span class="badge bg-light text-success">Get directions →</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form + Map Section -->
+  <div class="row g-5 mb-5">
+    <div class="col-lg-7">
+      <div class="contact-form-card">
+        <h3 class="fw-bold mb-3"><i class="fas fa-pen-alt me-2" style="color:#f4a261;"></i>Send us a message</h3>
+        <p class="text-muted mb-4">We'll get back to you within 24 hours. Your feedback helps us grow greener.</p>
+        <form id="contactForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Full Name</label>
+              <input type="text" class="form-control form-control-custom" id="contactName" placeholder="John Doe" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Email Address</label>
+              <input type="email" class="form-control form-control-custom" id="contactEmail" placeholder="hello@example.com" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Subject</label>
+              <input type="text" class="form-control form-control-custom" id="contactSubject" placeholder="Order inquiry / Partnership / Support">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Message</label>
+              <textarea class="form-control form-control-custom" rows="4" id="contactMessage" placeholder="Tell us how we can assist you..." required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-contact-submit"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
+            </div>
+          </div>
+        </form>
+        <div id="formSuccessAlert" class="mt-3" style="display: none;">
+          <div class="alert alert-success-custom"><i class="fas fa-check-circle me-2"></i> Thanks for reaching out! Our eco-team will respond shortly.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="contact-form-card h-100">
+        <h3 class="fw-bold mb-3"><i class="fas fa-map-marked-alt me-2" style="color:#f4a261;"></i>Find Us</h3>
+        <div class="map-placeholder clickable-contact" data-contact="map" style="cursor: pointer;">
+          <div class="text-center">
+            <i class="fas fa-map fa-4x mb-2" style="color:#2c6e49;"></i>
+            <p class="mb-0 fw-semibold">Click to view interactive map</p>
+            <small class="text-muted">101 Green Lane, Austin, TX</small>
+          </div>
+        </div>
+        <div class="mt-4">
+          <h5><i class="fas fa-clock me-2" style="color:#2c6e49;"></i>Support Hours</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-check text-success me-2"></i> Monday - Friday: 9 AM – 6 PM (EST)</li>
+            <li><i class="fas fa-check text-success me-2"></i> Saturday: 10 AM – 3 PM (EST)</li>
+            <li><i class="fas fa-tree text-success me-2"></i> Sunday: Closed for planet recovery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold" style="background: linear-gradient(125deg,#1c4d36,#f4a261); -webkit-background-clip:text; background-clip:text; color:transparent;">📖 Frequently Asked Questions</h2>
+      <p>Quick answers to common questions</p>
+    </div>
+    <div class="col-md-8 mx-auto">
+      <div class="faq-accordion-item" data-faq="1">
+        <div class="faq-question d-flex justify-content-between align-items-center">
+          <span><i class="fas fa-question-circle text-success me-2"></i> How do I track my order?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Once your order is shipped, you'll receive a tracking link via SMS/email. You can also visit 'My Orders' section after logging in.</div>
+      </div>
+      <div class="faq-accordion-item" data-faq="2">
+        <div class="faq-question d-flex justify-content-between align-items-center">
+          <span><i class="fas fa-leaf text-success me-2"></i> What makes your packaging eco-friendly?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">We use 100% compostable mailers, recycled paper padding, and glass jars. All plastic is eliminated.</div>
+      </div>
+      <div class="faq-accordion-item" data-faq="3">
+        <div class="faq-question d-flex justify-content-between align-items-center">
+          <span><i class="fas fa-truck text-success me-2"></i> Do you deliver across all USA?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Yes! We currently deliver to 12 states including CA, TX, NY, FL, IL, and expanding rapidly.</div>
+      </div>
+      <div class="faq-accordion-item" data-faq="4">
+        <div class="faq-question d-flex justify-content-between align-items-center">
+          <span><i class="fas fa-hand-holding-usd text-success me-2"></i> Can I partner as a local farm?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Absolutely! Email partnerships@centralmart.com with your farm details.</div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i>Your Cart <span id="cartItemCount">(0)</span></h5>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsList">
+    <div class="text-center text-muted py-5">Your cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div class="d-flex justify-content-between mb-3"><span>Subtotal:</span><span class="fw-bold" id="cartSubtotal">$0.00</span></div>
+    <button class="btn-checkout-cart" id="checkoutBtn"><i class="fas fa-lock me-2"></i>Proceed to Checkout</button>
+    <p class="small text-muted text-center mt-2">Free shipping on orders $35+</p>
+  </div>
+</div>
+
+<!-- Footer with proper policy links -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-4" style="background-color: #14261e !important;">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5><i class="fas fa-store me-2"></i>Central Mart</h5>
+        <p class="small text-white-50">USA's most innovative eco-grocery platform. Fresh, sustainable, delivered.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Explore</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="/" class="text-white-50">Home</a></li>
+          <li><a href="shop.html" class="text-white-50">Shop</a></li>
+          <li><a href="about.html" class="text-white-50">About</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Policy Pages</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="privacy.html" class="text-white-50">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-white-50">Terms of Service</a></li>
+          <li><a href="shipping.html" class="text-white-50">Shipping Policy</a></li>
+          <li><a href="returns.html" class="text-white-50">Return & Refund</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <address class="small text-white-50"><i class="fas fa-map-marker-alt"></i> 101 Green Lane, Austin, TX<br>
+        <i class="fas fa-phone"></i> +1 (888) 787-7769<br>
+        <i class="fas fa-envelope"></i> support@centralmart.com</address>
+      </div>
+    </div>
+    <hr class="mt-3">
+    <div class="text-center small text-white-50">&copy; 2026 Central Mart – Fresh, Ethical, Smart Grocery.</div>
+  </div>
+</footer>
+
+<!-- Modal for Contact Info -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-contact-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="contactModalTitle">Contact Info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="contactModalBody">
+        <p>Loading details...</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Maintenance Modal for Cart ONLY -->
+<div class="modal fade maintenance-modal" id="maintenanceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 2rem;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="fas fa-tools me-2"></i>Maintenance Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <i class="fas fa-database fa-4x mb-3" style="color:#f4a261;"></i>
+        
+        <p class="text-muted">Website maintenance is in progress. Our team is upgrading the system for a better eco-shopping experience. Please check back soon!</p>
+        <div class="bg-light p-2 rounded small">⏱️ Estimated downtime: 2 hours. Thank you for your patience.</div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Cart Array
+  let cart = [];
+  
+  // DOM Elements
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartItemCountSpan = document.getElementById('cartItemCount');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalSpan = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const maintenanceModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+  
+  // Open/Close Cart
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+  openCartBtn.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  // Update Cart UI
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartItemCountSpan.innerText = `(${totalItems})`;
+    cartCountBadge.innerText = totalItems;
+    cartSubtotalSpan.innerText = `$${subtotal.toFixed(2)}`;
+    
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = '<div class="text-center text-muted py-5">Your cart is empty</div>';
+      return;
+    }
+    
+    cartItemsList.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+        <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+          <div class="d-flex align-items-center gap-2 mt-2">
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+            <span class="mx-2">${item.quantity}</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            <button class="btn btn-sm btn-outline-danger ms-2 rounded-pill" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+    `).join('');
+  }
+  
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+  }
+  
+  function updateQuantity(productId, newQuantity) {
+    if (newQuantity <= 0) { removeFromCart(productId); return; }
+    const item = cart.find(item => item.id === productId);
+    if (item) item.quantity = newQuantity;
+    updateCartUI();
+  }
+  
+  // Checkout Button - Opens Maintenance Modal
+  checkoutBtn.addEventListener('click', () => { maintenanceModal.show(); });
+  
+  // Make functions global
+  window.updateQuantity = updateQuantity;
+  window.removeFromCart = removeFromCart;
+  
+  // Contact data for modal popups
+  const contactData = {
+    phone: { title: "Call Our Support", body: "<p><strong>📞 Phone Number:</strong> +1 (888) 787-7769</p><p><strong>Hours:</strong> Monday-Friday, 9AM - 6PM EST</p><p><i class='fas fa-headset'></i> Our green support team is ready to help with orders, returns, and farm partnerships.</p><button class='btn btn-success rounded-pill mt-2' onclick='window.location.href=\"tel:+18887877769\"'>Call Now</button>" },
+    email: { title: "Email Us", body: "<p><strong>📧 General Inquiries:</strong> support@centralmart.com</p><p><strong>🛒 Order Support:</strong> support@centralmart.com</p><p><strong>🤝 Partnerships:</strong> partnerships@centralmart.com</p><p>We typically respond within 12-24 hours.</p><button class='btn btn-success rounded-pill mt-2' onclick='window.location.href=\"mailto:support@centralmart.com\"'>Send Email</button>" },
+    visit: { title: "Visit Our Eco-Hub", body: "<p><strong>📍 Address:</strong> 101 Green Lane, Austin, Texas 78701</p><p><strong>🕒 Open Hours:</strong> Mon-Fri 10AM - 4PM (by appointment for bulk pickups)</p><p><i class='fas fa-seedling'></i> Our headquarters is powered by solar energy.</p><iframe src='https://maps.google.com/maps?q=101+Green+Lane+Austin+TX&output=embed' width='100%' height='200' style='border-radius:1rem; margin-top:1rem;' allowfullscreen></iframe>" },
+    map: { title: "Interactive Map", body: "<p>📍 Our main distribution hub is located at 101 Green Lane, Austin, TX 78701.</p><iframe src='https://maps.google.com/maps?q=101+Green+Lane+Austin+TX&z=15&output=embed' width='100%' height='300' style='border-radius:1rem;' allowfullscreen></iframe>" },
+    instagram: { title: "Instagram", body: "<p><i class='fab fa-instagram fa-3x mb-3' style='color:#2c6e49;'></i></p><p>Follow <strong>@suryawebsites</strong> for daily eco-tips and new arrivals.</p><button class='btn btn-success rounded-pill' onclick='window.open(\"https://instagram.com\",\"_blank\")'>Follow on Instagram</button>" },
+    facebook: { title: "Facebook", body: "<p><i class='fab fa-facebook fa-3x mb-3' style='color:#2c6e49;'></i></p><p>Like our page for community events and exclusive offers.</p><button class='btn btn-success rounded-pill' onclick='window.open(\"https://facebook.com\",\"_blank\")'>Visit Facebook</button>" },
+    twitter: { title: "Twitter (X)", body: "<p><i class='fab fa-twitter fa-3x mb-3' style='color:#2c6e49;'></i></p><p>Follow <strong>@SuryaEco</strong> for climate news and flash sales.</p><button class='btn btn-success rounded-pill' onclick='window.open(\"https://twitter.com\",\"_blank\")'>Follow on X</button>" },
+    linkedin: { title: "LinkedIn", body: "<p><i class='fab fa-linkedin fa-3x mb-3' style='color:#2c6e49;'></i></p><p>Connect with our leadership team and explore career opportunities.</p><button class='btn btn-success rounded-pill' onclick='window.open(\"https://linkedin.com\",\"_blank\")'>Visit LinkedIn</button>" }
+  };
+
+  const contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
+  const modalTitle = document.getElementById('contactModalTitle');
+  const modalBodyElem = document.getElementById('contactModalBody');
+
+  // Add click listeners to contact cards
+  document.querySelectorAll('.clickable-contact').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const key = el.getAttribute('data-contact');
+      if(key && contactData[key]) {
+        modalTitle.innerText = contactData[key].title;
+        modalBodyElem.innerHTML = contactData[key].body;
+        contactModal.show();
+      }
+    });
+  });
+
+  // FAQ Accordion Logic
+  document.querySelectorAll('.faq-accordion-item').forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    const answerDiv = item.querySelector('.faq-answer');
+    const icon = questionDiv.querySelector('.faq-icon');
+    questionDiv.addEventListener('click', () => {
+      const isOpen = answerDiv.classList.contains('show');
+      document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('show'));
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.remove('fa-chevron-up'));
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.add('fa-chevron-down'));
+      if(!isOpen) {
+        answerDiv.classList.add('show');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      }
+    });
+  });
+
+  // Contact Form Submit Handler
+  const contactForm = document.getElementById('contactForm');
+  const successAlert = document.getElementById('formSuccessAlert');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const message = document.getElementById('contactMessage').value;
+    if(name && email && message) {
+      successAlert.style.display = 'block';
+      contactForm.reset();
+      setTimeout(() => { successAlert.style.display = 'none'; }, 5000);
+    } else {
+      alert('Please fill all required fields (Name, Email, Message).');
+    }
+  });
+</script>
+</body>
+</html>

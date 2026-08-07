@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Central Mart | About Us - Eco Grocery, USA</title>
+  <!-- Bootstrap 5 + Font Awesome + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2333a55e'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3E🛒%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fefaf2; color: #1e2a24; overflow-x: hidden; }
+    h1, h2, h3, h4, .navbar-brand, .btn, .section-title-about { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .navbar-surya { background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0; }
+    .about-hero { background: linear-gradient(125deg, #eef5e6 0%, #fff6ea 100%); padding: 4rem 0 3rem; border-radius: 0 0 3rem 3rem; margin-bottom: 3rem; position: relative; overflow: hidden; }
+    .floating-leaf { position: absolute; font-size: 5rem; opacity: 0.1; animation: floatAbout 15s infinite ease-in-out; pointer-events: none; }
+    @keyframes floatAbout { 0% { transform: translateY(0px) rotate(0deg);} 50% { transform: translateY(-20px) rotate(8deg);} 100% { transform: translateY(0px) rotate(0deg);} }
+    .glass-stat-card { background: rgba(255,255,245,0.8); backdrop-filter: blur(8px); border-radius: 2rem; border: 1px solid rgba(100,130,80,0.2); transition: all 0.3s ease; cursor: pointer; }
+    .glass-stat-card:hover { transform: translateY(-6px); background: white; box-shadow: 0 20px 30px -12px rgba(44,110,73,0.15); }
+    .clickable-section { transition: all 0.25s ease; cursor: pointer; }
+    .clickable-section:hover { transform: translateY(-5px); }
+    .story-card { background: white; border-radius: 2rem; padding: 2rem; box-shadow: 0 15px 30px -12px rgba(0,0,0,0.05); transition: all 0.3s; height: 100%; border: 1px solid #f0e6d8; cursor: pointer; }
+    .story-card:hover { transform: translateY(-6px); box-shadow: 0 25px 35px -14px rgba(44,110,73,0.12); border-color: #d4e2ca; }
+    .team-member { text-align: center; transition: 0.25s; cursor: pointer; }
+    .team-member:hover { transform: scale(1.02); }
+    .team-img { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 4px solid #f4a261; transition: 0.3s; }
+    .timeline-item { border-left: 3px solid #2c6e49; padding-left: 1.5rem; margin-bottom: 2rem; transition: 0.2s; cursor: pointer; }
+    .timeline-item:hover { transform: translateX(6px); background: #fef9ef; border-radius: 1rem; padding: 0.8rem 1rem 0.8rem 2rem; }
+    .btn-about-click { background: linear-gradient(100deg, #2a6b46, #3e9f62); border: none; border-radius: 40px; padding: 0.6rem 1.5rem; font-weight: 600; color: white; transition: 0.2s; }
+    .btn-about-click:hover { transform: scale(0.97); background: linear-gradient(100deg, #1f543a, #2c6e49); }
+    .impact-number { font-size: 2.5rem; font-weight: 800; color: #2c6e49; }
+    @media (max-width: 768px) { .about-hero { padding: 2rem 0; } .impact-number { font-size: 1.8rem; } .team-img { width: 100px; height: 100px; } }
+    .footer-surya a { text-decoration: none; color: #cbdecb; transition: 0.2s; }
+    .footer-surya a:hover { color: #f4a261; }
+    .modal-about-content { border-radius: 2rem; }
+    /* Cart Sidebar Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 420px;
+      max-width: 90%;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1050;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1040;
+      display: none;
+    }
+    .cart-overlay.show { display: block; }
+    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #eef2e2; background: #fefaf2; }
+    .cart-items { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #f0e6d8; }
+    .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-weight: 600; font-size: 0.9rem; }
+    .cart-item-price { color: #2c6e49; font-weight: 600; }
+    .cart-footer { padding: 1.2rem; border-top: 1px solid #eef2e2; background: white; }
+    .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+    .btn-checkout-cart {
+      background: #2c6e49;
+      border: none;
+      border-radius: 40px;
+      padding: 0.8rem;
+      font-weight: 700;
+      color: white;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .btn-checkout-cart:hover { background: #1f543a; transform: scale(0.98); }
+    @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } }
+    .maintenance-modal .modal-content { border-radius: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header with working navigation links and cart -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-2" href="/" style="color: #2c6e49;"><i class="fas fa-store me-2"></i>Central<span style="color:#f4a261;"> Mart</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#suryaNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="suryaNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="shop.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn cart-icon-btn position-relative" id="openCartBtn" style="background: none; border: none; font-size: 1.3rem; color:#2c6e49;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="cartCountBadge" style="background:#f4a261; color:#1e2a24;">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- About Page Hero Section -->
+<div class="about-hero">
+  <div class="floating-leaf" style="top: 5%; left: -2%;"><i class="fas fa-seedling"></i></div>
+  <div class="floating-leaf" style="bottom: 0; right: 2%; animation-duration: 18s;"><i class="fas fa-apple-alt"></i></div>
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 text-center text-lg-start">
+        <span class="badge bg-success bg-opacity-25 text-success px-3 py-2 rounded-pill mb-3"><i class="fas fa-heart me-1"></i> Our Story Since 2025</span>
+        <h1 class="display-4 fw-bold" style="color:#14382a;">More than a <span style="color:#f4a261;">grocery store</span><br>— a green movement</h1>
+        <p class="lead mt-3">Central Mart is redefining grocery e-commerce in the USA with zero-waste logistics, Central Mart-driven freshness, and direct support to local organic farms.</p>
+        <button class="btn-about-click mt-2" id="discoverMissionBtn"><i class="fas fa-arrow-right me-2"></i>Discover our mission</button>
+      </div>
+      <div class="col-lg-5">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=500&fit=crop" class="img-fluid rounded-4 shadow-lg" alt="about surya grocery organic">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Clickable Stats Section -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="glass-stat-card text-center p-4 clickable-section" data-info="farmers">
+        <i class="fas fa-tractor fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h3 class="impact-number">80+</h3>
+        <p class="fw-bold">Local Farm Partners</p>
+        <small class="text-muted">Click to learn →</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-stat-card text-center p-4 clickable-section" data-info="trees">
+        <i class="fas fa-tree fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h3 class="impact-number">1,890+</h3>
+        <p class="fw-bold">Trees Planted</p>
+        <small class="text-muted">Click for impact →</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-stat-card text-center p-4 clickable-section" data-info="waste">
+        <i class="fas fa-recycle fa-3x mb-3" style="color:#2c6e49;"></i>
+        <h3 class="impact-number">12,450 lbs</h3>
+        <p class="fw-bold">CO₂ Offset</p>
+        <small class="text-muted">Click to explore →</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Story / Mission & Vision -->
+  <div class="row g-5 mb-5">
+    <div class="col-md-6">
+      <div class="story-card clickable-section" data-info="mission">
+        <i class="fas fa-bullseye fa-2x mb-3" style="color:#f4a261;"></i>
+        <h3 class="fw-bold">Our Mission</h3>
+        <p>To create a waste-free, carbon-neutral grocery ecosystem across America by connecting conscious consumers with regenerative farmers and leveraging Central Mart for smart inventory.</p>
+        <button class="btn btn-outline-success rounded-pill btn-sm mt-2">Read full mission →</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="story-card clickable-section" data-info="vision">
+        <i class="fas fa-eye fa-2x mb-3" style="color:#f4a261;"></i>
+        <h3 class="fw-bold">Our Vision</h3>
+        <p>A future where every grocery purchase restores the planet. We envision zero food deserts, zero plastic packaging, and 100% transparent supply chains by 2030.</p>
+        <button class="btn btn-outline-success rounded-pill btn-sm mt-2">Discover vision →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold" style="font-size: 2rem; background: linear-gradient(125deg,#1c4d36,#f4a261); -webkit-background-clip:text; background-clip:text; color:transparent;">🌿 The Surya Journey</h2>
+      <p>Milestones that shaped our eco-grocery revolution</p>
+    </div>
+    <div class="col-md-6">
+      <div class="timeline-item clickable-section" data-info="timeline1">
+        <h5><i class="fas fa-calendar-alt text-success me-2"></i> January 2025</h5>
+        <p class="fw-bold">Launch of Central Mart</p>
+        <p class="small text-muted">Started with 20 local farms in California, delivering first 500 orders plastic-free.</p>
+      </div>
+      <div class="timeline-item clickable-section" data-info="timeline2">
+        <h5><i class="fas fa-calendar-alt text-success me-2"></i> June 2025</h5>
+        <p class="fw-bold">Central Mart Freshness Score Introduced</p>
+        <p class="small text-muted">Implemented real-time freshness tracking, reducing food waste by 34%.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="timeline-item clickable-section" data-info="timeline3">
+        <h5><i class="fas fa-calendar-alt text-success me-2"></i> September 2025</h5>
+        <p class="fw-bold">Carbon-Neutral Delivery Fleet</p>
+        <p class="small text-muted">Switched 100% to electric vans and partnered with reforestation projects.</p>
+      </div>
+      <div class="timeline-item clickable-section" data-info="timeline4">
+        <h5><i class="fas fa-calendar-alt text-success me-2"></i> December 2025</h5>
+        <p class="fw-bold">Expansion to 12 States</p>
+        <p class="small text-muted">Now serving NY, TX, FL, IL, and more – with 80+ farm partners.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold" style="font-size: 2rem;">👥 Meet the Green Pioneers</h2>
+      <p>The passionate team behind Central Mart</p>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="team-member clickable-section" data-info="team1">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="team-img mb-3" alt="founder">
+        <h5 class="fw-bold">Priya Sharma</h5>
+        <p class="text-muted">Founder & CEO</p>
+        <small>Click to read story →</small>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="team-member clickable-section" data-info="team2">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="team-img mb-3" alt="operations head">
+        <h5 class="fw-bold">Michael Chen</h5>
+        <p class="text-muted">Head of Sustainability</p>
+        <small>Click to read →</small>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="team-member clickable-section" data-info="team3">
+        <img src="https://randomuser.me/api/portraits/women/45.jpg" class="team-img mb-3" alt="farm relations">
+        <h5 class="fw-bold">Elena Rodriguez</h5>
+        <p class="text-muted">Farm Relations Director</p>
+        <small>Click to read →</small>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="team-member clickable-section" data-info="team4">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" class="team-img mb-3" alt="tech lead">
+        <h5 class="fw-bold">James Wilson</h5>
+        <p class="text-muted">Central Mart & Tech Lead</p>
+        <small>Click to read →</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values Section -->
+  <div class="row g-4 mb-5">
+    <div class="col-12">
+      <h2 class="text-center fw-bold mb-4" style="color:#1e462e;">Our Core Values</h2>
+    </div>
+    <div class="col-md-3 col-6 text-center clickable-section" data-info="value1">
+      <div class="p-3 rounded-4 bg-white shadow-sm h-100">
+        <i class="fas fa-leaf fa-3x text-success mb-2"></i>
+        <h5>Zero Waste</h5>
+        <p class="small">100% plastic-neutral packaging</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 text-center clickable-section" data-info="value2">
+      <div class="p-3 rounded-4 bg-white shadow-sm h-100">
+        <i class="fas fa-hand-holding-heart fa-3x text-success mb-2"></i>
+        <h5>Fair Trade</h5>
+        <p class="small">Direct farmer partnerships</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 text-center clickable-section" data-info="value3">
+      <div class="p-3 rounded-4 bg-white shadow-sm h-100">
+        <i class="fas fa-microchip fa-3x text-success mb-2"></i>
+        <h5>Central Mart Innovation</h5>
+        <p class="small">Smart freshness & logistics</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 text-center clickable-section" data-info="value4">
+      <div class="p-3 rounded-4 bg-white shadow-sm h-100">
+        <i class="fas fa-globe-americas fa-3x text-success mb-2"></i>
+        <h5>Climate Action</h5>
+        <p class="small">Carbon offset for every order</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action Section -->
+  <div class="row my-5">
+    <div class="col-12">
+      <div class="bg-dark text-white p-5 rounded-4 text-center" style="background: linear-gradient(115deg, #1e382a, #11261d);">
+        <h3 class="fw-bold"><i class="fas fa-seedling me-2"></i> Join Our Green Community</h3>
+        <p>Subscribe for eco tips, exclusive offers & 15% off your first order</p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <input type="email" placeholder="Your email address" class="form-control w-auto rounded-pill" id="subscribeEmail">
+          <button class="btn btn-warning rounded-pill px-4" id="subscribeBtn">Subscribe</button>
+        </div>
+        <p class="small mt-3 text-white-50 clickable-section" data-info="contactInfo" style="cursor: pointer;"><i class="fas fa-envelope"></i> Contact us: support@centralmart.com</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i>Your Cart <span id="cartItemCount">(0)</span></h5>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsList">
+    <div class="text-center text-muted py-5">Your cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div class="d-flex justify-content-between mb-3"><span>Subtotal:</span><span class="fw-bold" id="cartSubtotal">$0.00</span></div>
+    <button class="btn-checkout-cart" id="checkoutBtn"><i class="fas fa-lock me-2"></i>Proceed to Checkout</button>
+    <p class="small text-muted text-center mt-2">Free shipping on orders $35+</p>
+  </div>
+</div>
+
+<!-- Footer with proper policy links -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-4" style="background-color: #14261e !important;">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5><i class="fas fa-store me-2"></i>Central Mart</h5>
+        <p class="small text-white-50">USA's most innovative eco-grocery platform. Fresh, sustainable, delivered.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Explore</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="/" class="text-white-50">Home</a></li>
+          <li><a href="shop.html" class="text-white-50">Shop</a></li>
+          <li><a href="about.html" class="text-white-50">About</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Policy Pages</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="privacy.html" class="text-white-50">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-white-50">Terms of Service</a></li>
+          <li><a href="shipping.html" class="text-white-50">Shipping Policy</a></li>
+          <li><a href="returns.html" class="text-white-50">Return & Refund</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <address class="small text-white-50"><i class="fas fa-map-marker-alt"></i> 101 Green Lane, Austin, TX<br>
+        <i class="fas fa-phone"></i> +1 (888) 787-7769<br>
+        <i class="fas fa-envelope"></i> support@centralmart.com</address>
+      </div>
+    </div>
+    <hr class="mt-3">
+    <div class="text-center small text-white-50">&copy; 2026 Central Mart – Fresh, Ethical, Smart Grocery.</div>
+  </div>
+</footer>
+
+<!-- Modal for clickable info -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-about-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="infoModalTitle">Info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="infoModalBody">
+        <p>Loading details...</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Maintenance Modal for Cart ONLY -->
+<div class="modal fade maintenance-modal" id="maintenanceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 2rem;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="fas fa-tools me-2"></i>Maintenance Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <i class="fas fa-database fa-4x mb-3" style="color:#f4a261;"></i>
+        
+        <p class="text-muted">Website maintenance is in progress. Our team is upgrading the system for a better eco-shopping experience. Please check back soon!</p>
+        <div class="bg-light p-2 rounded small">⏱️ Estimated downtime: 2 hours. Thank you for your patience.</div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Cart Array
+  let cart = [];
+  
+  // DOM Elements
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartItemCountSpan = document.getElementById('cartItemCount');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalSpan = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const maintenanceModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+  
+  // Open/Close Cart
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+  openCartBtn.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  // Update Cart UI
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartItemCountSpan.innerText = `(${totalItems})`;
+    cartCountBadge.innerText = totalItems;
+    cartSubtotalSpan.innerText = `$${subtotal.toFixed(2)}`;
+    
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = '<div class="text-center text-muted py-5">Your cart is empty</div>';
+      return;
+    }
+    
+    cartItemsList.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+        <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+          <div class="d-flex align-items-center gap-2 mt-2">
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+            <span class="mx-2">${item.quantity}</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            <button class="btn btn-sm btn-outline-danger ms-2 rounded-pill" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+    `).join('');
+  }
+  
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+  }
+  
+  function updateQuantity(productId, newQuantity) {
+    if (newQuantity <= 0) { removeFromCart(productId); return; }
+    const item = cart.find(item => item.id === productId);
+    if (item) item.quantity = newQuantity;
+    updateCartUI();
+  }
+  
+  // Checkout Button - Opens Maintenance Modal
+  checkoutBtn.addEventListener('click', () => { maintenanceModal.show(); });
+  
+  // Make functions global
+  window.updateQuantity = updateQuantity;
+  window.removeFromCart = removeFromCart;
+  
+  // Data for modal popups on clickable sections
+  const infoData = {
+    farmers: "We partner with 80+ small organic farms across California, Texas, and New York. All partners follow regenerative practices and receive fair wages.",
+    trees: "Through our '1 order = 1 tree' initiative, we've planted 1,890 trees in US national forests, restoring natural habitats and capturing carbon.",
+    waste: "12,450 lbs of CO₂ offset equals removing 1.2 cars from the road for a year. Our electric delivery fleet and zero-waste packaging drive this impact.",
+    mission: "Our mission is to build a zero-waste grocery network where every purchase regenerates the planet. We prioritize local sourcing and plastic-free delivery.",
+    vision: "By 2030, we envision eliminating food deserts, achieving 100% compostable packaging, and inspiring a nationwide shift to conscious consumption.",
+    timeline1: "In January 2025, Central Mart launched with just 20 farms and delivered 500 orders using only reusable crates and paper bags.",
+    timeline2: "Central Mart Freshness Score launched in June 2025 – using sensors and predictive analytics to reduce spoilage by 34% across our supply chain.",
+    timeline3: "September 2025: Our entire last-mile fleet transitioned to electric vans, cutting delivery emissions by 78%.",
+    timeline4: "December 2025: Expansion to 12 states, serving over 4,200 families weekly and adding 60 new farm partners.",
+    team1: "Priya Sharma – Founder & CEO. Former supply chain expert turned eco-entrepreneur. She started Surya to bridge the gap between sustainability and convenience.",
+    team2: "Michael Chen – Head of Sustainability. Environmental scientist leading our carbon offset & zero-waste programs.",
+    team3: "Elena Rodriguez – Farm Relations Director. Grew up on a farm in Oregon, now connects us with ethical growers nationwide.",
+    team4: "James Wilson – Central Mart & Tech Lead. Built our freshness prediction algorithm and smart logistics platform.",
+    value1: "Zero Waste: We use only home-compostable mailers, glass jars, and reusable crates. 0% plastic in our supply chain.",
+    value2: "Fair Trade: Direct partnerships mean farmers earn 20% above market rates. No middlemen, full transparency.",
+    value3: "Central Mart Innovation: Our machine learning models forecast demand, reducing food waste and ensuring peak freshness.",
+    value4: "Climate Action: Every order funds reforestation. We also purchase verified carbon credits for all operations.",
+    contactInfo: "Email: support@centralmart.com | Phone: +1 (888) 787-7769 | Office: 101 Green Lane, Austin, TX 78701"
+  };
+  
+  const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+  const infoModalTitle = document.getElementById('infoModalTitle');
+  const infoModalBody = document.getElementById('infoModalBody');
+  
+  // Add click listeners to clickable-section elements
+  document.querySelectorAll('.clickable-section').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const infoKey = el.getAttribute('data-info');
+      if(infoKey && infoData[infoKey]) {
+        infoModalTitle.innerText = el.querySelector('h5, h3, p') ? (el.querySelector('h5')?.innerText || 'More Info') : 'Did you know?';
+        infoModalBody.innerHTML = `<p class="lead">${infoData[infoKey]}</p>`;
+        infoModal.show();
+      }
+    });
+  });
+  
+  // Subscribe button
+  document.getElementById('subscribeBtn')?.addEventListener('click', () => {
+    const email = document.getElementById('subscribeEmail')?.value;
+    if(email) alert(`Thanks for subscribing, ${email}! You'll receive eco updates soon.`);
+    else alert('Please enter a valid email address.');
+  });
+  
+  // Discover mission button
+  document.getElementById('discoverMissionBtn')?.addEventListener('click', () => {
+    infoModalTitle.innerText = 'Our Mission';
+    infoModalBody.innerHTML = `<p>${infoData.mission}</p><p class="mt-2">Join us in making every meal a step toward a greener planet.</p>`;
+    infoModal.show();
+  });
+</script>
+</body>
+</html>

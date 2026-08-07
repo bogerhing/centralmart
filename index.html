@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Central Mart | Eco Grocery, USA</title>
+  <!-- Bootstrap 5 + Font Awesome + Google Fonts (Modern & Unique) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Favicon (eco leaf) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2333a55e'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3E🛒%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefaf2;
+      color: #1e2a24;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .navbar-brand, .btn, .section-modern-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Unique Hero with 3D floating effect */
+    .hero-surya {
+      background: radial-gradient(circle at 80% 30%, #eef5e6, #fff6ea);
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 0 5rem;
+      border-radius: 0 0 4rem 4rem;
+      margin-bottom: 3rem;
+    }
+    .floating-produce {
+      position: absolute;
+      font-size: 6rem;
+      opacity: 0.12;
+      animation: floatSlow 14s infinite ease-in-out;
+      pointer-events: none;
+    }
+    @keyframes floatSlow {
+      0% { transform: translateY(0px) rotate(0deg);}
+      50% { transform: translateY(-25px) rotate(6deg);}
+      100% { transform: translateY(0px) rotate(0deg);}
+    }
+    .glass-card-unique {
+      background: rgba(255,255,245,0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(120,150,100,0.25);
+      box-shadow: 0 30px 45px -20px rgba(0,0,0,0.12);
+    }
+    .badge-pulse-surya {
+      background: #2c6e49;
+      color: white;
+      border-radius: 60px;
+      padding: 0.4rem 1.2rem;
+      font-weight: 600;
+      animation: softPulse 2s infinite;
+      display: inline-block;
+    }
+    @keyframes softPulse {
+      0% { box-shadow: 0 0 0 0 rgba(44,110,73,0.5);}
+      70% { box-shadow: 0 0 0 10px rgba(44,110,73,0);}
+      100% { box-shadow: 0 0 0 0 rgba(44,110,73,0);}
+    }
+    /* Product Card fixed margins */
+    .product-card-fresh {
+      background: white;
+      border-radius: 1.8rem;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      overflow: hidden;
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.08);
+      border: 1px solid #e9f0e3;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card-fresh:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 38px -16px rgba(44,110,73,0.2);
+      border-color: #cde0cf;
+    }
+    .img-square-perfect {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .product-card-fresh:hover .img-square-perfect {
+      transform: scale(1.02);
+    }
+    .btn-gradient-surya {
+      background: linear-gradient(100deg, #2a6b46, #3e9f62);
+      border: none;
+      border-radius: 40px;
+      padding: 0.6rem 1rem;
+      font-weight: 700;
+      color: white;
+      transition: 0.2s;
+      width: 100%;
+    }
+    .btn-gradient-surya:hover {
+      transform: scale(0.96);
+      background: linear-gradient(100deg, #1f543a, #2c6e49);
+    }
+    /* fixed price + button margin */
+    .price-btn-wrapper {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .price-tag {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #1e462e;
+    }
+    .offer-zone-card {
+      background: linear-gradient(125deg, #fff3e0, #ffe9d4);
+      border-radius: 2rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .offer-zone-card:hover {
+      transform: scale(1.01);
+      background: #fff0e0;
+    }
+    .section-modern-title {
+      font-weight: 800;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(125deg, #1c4d36, #f4a261);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .about-us-story {
+      background: #fef5e8;
+      border-radius: 2rem;
+      border-left: 8px solid #f4a261;
+    }
+    /* Testimonial Card Styles */
+    .testimonial-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.8rem;
+      transition: all 0.3s ease;
+      border: 1px solid #eef2e2;
+      height: 100%;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(44,110,73,0.1);
+      border-color: #cde0cf;
+    }
+    .testimonial-img {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #f4a261;
+    }
+    .star-rating {
+      color: #f4a261;
+      letter-spacing: 2px;
+    }
+    /* FAQ Accordion Styles */
+    .faq-item {
+      background: white;
+      border-radius: 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid #eef2e2;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      background: white;
+      font-weight: 600;
+      transition: 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-question:hover {
+      background: #fef9ef;
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.2rem 1.5rem;
+      color: #5a6e5e;
+      display: none;
+      line-height: 1.6;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .faq-icon {
+      transition: transform 0.2s;
+    }
+    .faq-icon.rotated {
+      transform: rotate(180deg);
+    }
+    @media (max-width: 768px) {
+      .section-modern-title { font-size: 1.8rem; }
+      .hero-surya { padding: 2rem 0 2.5rem; }
+      .price-btn-wrapper { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .price-tag { text-align: center; }
+      .testimonial-card { padding: 1.2rem; }
+    }
+    .footer-surya a {
+      text-decoration: none;
+      color: #cbdecb;
+      transition: 0.2s;
+    }
+    .footer-surya a:hover {
+      color: #f4a261;
+    }
+    /* Cart Sidebar Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 420px;
+      max-width: 90%;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1050;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1040;
+      display: none;
+    }
+    .cart-overlay.show { display: block; }
+    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #eef2e2; background: #fefaf2; }
+    .cart-items { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #f0e6d8; }
+    .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-weight: 600; font-size: 0.9rem; }
+    .cart-item-price { color: #2c6e49; font-weight: 600; }
+    .cart-footer { padding: 1.2rem; border-top: 1px solid #eef2e2; background: white; }
+    .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+    .btn-checkout-cart {
+      background: #2c6e49;
+      border: none;
+      border-radius: 40px;
+      padding: 0.8rem;
+      font-weight: 700;
+      color: white;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .btn-checkout-cart:hover { background: #1f543a; transform: scale(0.98); }
+    @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } }
+    .maintenance-modal .modal-content { border-radius: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header with Home, About, Contact, Shop -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-2" href="/" style="color: #2c6e49;"><i class="fas fa-store me-2"></i>Central<span style="color:#f4a261;"> Mart</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#suryaNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="suryaNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="shop.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn cart-icon-btn position-relative" id="openCartBtn" style="background: none; border: none; font-size: 1.3rem; color:#2c6e49;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="cartCountBadge" style="background:#f4a261; color:#1e2a24;">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero-surya">
+  <div class="floating-produce" style="top: 5%; left: -2%;"><i class="fas fa-leaf"></i></div>
+  <div class="floating-produce" style="bottom: 8%; right: 1%; animation-duration: 18s;"><i class="fas fa-apple-alt"></i></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge-pulse-surya mb-3 d-inline-flex"><i class="fas fa-star-of-life me-2"></i> Central Mart-Powered Freshness</span>
+        <h1 class="display-4 fw-bold" style="color:#14382a;">Smart <span style="color:#f4a261;">Grocery</span> Delivery<br> Across USA</h1>
+        <p class="lead mt-3">Zero-waste packaging • Farm-to-fork in hours • Carbon-neutral shipping</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="shop.html" class="btn btn-lg rounded-pill px-5 py-2" style="background:#2c6e49; color:white; box-shadow:0 8px 20px rgba(44,110,73,0.3);">Explore Deals <i class="fas fa-tag ms-1"></i></a>
+          <a href="about.html" class="btn btn-outline-success btn-lg rounded-pill px-4">Watch Story →</a>
+        </div>
+        <div class="mt-4 d-flex gap-4 flex-wrap">
+          <div><i class="fas fa-check-circle text-success"></i> 100% Plastic-Neutral</div>
+          <div><i class="fas fa-tree text-success"></i> 1 Order = 1 Tree</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="glass-card-unique p-3 text-center">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=600&fit=crop" alt="organic fresh produce" class="img-fluid rounded-4 shadow" style="max-height: 380px; width:100%; object-fit:cover;">
+          <p class="mt-2 text-muted small"><i class="fas fa-map-marker-alt"></i> Fresh from California farms</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  
+  <!-- 🌍 Planet-friendly picks -->
+  <div class="row mb-4 align-items-end">
+    <div class="col-md-8">
+      <h2 class="section-modern-title">🌍 Planet-friendly picks</h2>
+      <p class="text-muted">Curated for low carbon footprint & maximum flavor</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+      <a href="shop.html" class="text-decoration-none fw-semibold" style="color:#f4a261;">View all →</a>
+    </div>
+  </div>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3 col-sm-6">
+      <div class="product-card-fresh p-3">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop" class="img-square-perfect rounded-3" alt="avocado">
+        <div class="mt-3 d-flex justify-content-between">
+          <h5 class="fw-bold">Organic Avocados</h5>
+          <span class="badge bg-success bg-opacity-10 text-success">⭐ 4.9</span>
+        </div>
+        <p class="small text-muted">Creamy, ethical, zero airmiles</p>
+        <div class="price-btn-wrapper">
+          <span class="price-tag">$6.49</span>
+          <button class="btn-gradient-surya add-to-cart" data-id="1" data-name="Organic Avocados" data-price="6.49" data-img="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="product-card-fresh p-3">
+        <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=400&h=400&fit=crop" class="img-square-perfect rounded-3" alt="kale">
+        <h5 class="fw-bold mt-3">Organic Kale Bundle</h5>
+        <p class="small text-muted">Superfood, harvested today</p>
+        <div class="price-btn-wrapper">
+          <span class="price-tag">$3.99</span>
+          <button class="btn-gradient-surya add-to-cart" data-id="2" data-name="Organic Kale Bundle" data-price="3.99" data-img="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="product-card-fresh p-3">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=400&fit=crop" class="img-square-perfect rounded-3" alt="wild rice">
+        <h5 class="fw-bold mt-3">Wild Rice Medley</h5>
+        <p class="small text-muted">Sustainable harvest, gluten-free</p>
+        <div class="price-btn-wrapper">
+          <span class="price-tag">$7.99</span>
+          <button class="btn-gradient-surya add-to-cart" data-id="3" data-name="Wild Rice Medley" data-price="7.99" data-img="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="product-card-fresh p-3">
+        <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=400&fit=crop" class="img-square-perfect rounded-3" alt="almond milk">
+        <h5 class="fw-bold mt-3">Unsweetened Almond Milk</h5>
+        <p class="small text-muted">Plant-based, carton recyclable</p>
+        <div class="price-btn-wrapper">
+          <span class="price-tag">$4.49</span>
+          <button class="btn-gradient-surya add-to-cart" data-id="4" data-name="Unsweetened Almond Milk" data-price="4.49" data-img="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ♻️ Zero-Waste Essentials -->
+  <div class="row mt-3 mb-4">
+    <div class="col-12">
+      <h2 class="section-modern-title">♻️ Zero-Waste Essentials</h2>
+      <p>Reusable, compostable, plastic-free lifestyle swaps</p>
+    </div>
+  </div>
+  <div class="row g-4 mb-5">
+    <div class="col-md-3 col-sm-6">
+      <div class="text-center p-3 rounded-4 bg-white shadow-sm h-100" style="border-radius: 2rem;">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=200&h=200&fit=crop" class="rounded-circle mb-3" style="width: 110px; height:110px; object-fit:cover;">
+        <h5>Cotton Produce Bags</h5>
+        <p class="small">Set of 5, washable</p>
+        <button class="btn-gradient-surya add-to-cart" data-id="7" data-name="Cotton Produce Bags" data-price="12.99" data-img="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=80&h=80&fit=crop">Add to cart</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="text-center p-3 rounded-4 bg-white shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1582138079379-4d3f79f61269?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle mb-3" style="width: 110px; height:110px; object-fit:cover;">
+        <h5>Glass Storage Jars</h5>
+        <p class="small">Airtight, BPA-free</p>
+        <button class="btn-gradient-surya add-to-cart" data-id="8" data-name="Glass Storage Jars" data-price="24.99" data-img="https://images.unsplash.com/photo-1582138079379-4d3f79f61269?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to cart</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="text-center p-3 rounded-4 bg-white shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=200&h=200&fit=crop" class="rounded-circle mb-3" style="width: 110px; height:110px; object-fit:cover;">
+        <h5>Beeswax Wraps</h5>
+        <p class="small">Reusable, 3-pack</p>
+        <button class="btn-gradient-surya add-to-cart" data-id="12" data-name="Beeswax Wraps" data-price="14.99" data-img="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=80&h=80&fit=crop">Add to cart</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="text-center p-3 rounded-4 bg-white shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=200&h=200&fit=crop" class="rounded-circle mb-3" style="width: 110px; height:110px; object-fit:cover;">
+        <h5>Steel Bottle</h5>
+        <p class="small">Vacuum insulated</p>
+        <button class="btn-gradient-surya add-to-cart" data-id="13" data-name="Stainless Steel Bottle" data-price="19.99" data-img="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=80&h=80&fit=crop">Add to cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFERS ZONE SECTION -->
+  <div class="row my-5">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+        <h2 class="section-modern-title">🔥 Offers Zone</h2>
+        <span class="badge bg-danger rounded-pill px-3 py-2">Limited Time</span>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="offer-zone-card p-4 h-100 d-flex flex-column justify-content-between">
+        <div><i class="fas fa-bolt fa-2x text-warning mb-2"></i>
+        <h3 class="fw-bold">20% off <span class="text-success">Organic Veggies</span></h3>
+        <p>Use code: <span class="bg-dark text-white px-2 rounded">CENTRALMART20</span> on all leafy greens & root veg</p>
+        </div>
+        <button class="btn btn-outline-success rounded-pill w-50 mt-2 add-to-cart" data-id="14" data-name="Veggie Offer (20% off)" data-price="0" data-img="">Claim Deal</button>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="offer-zone-card p-4 h-100" style="background: linear-gradient(115deg, #e3f0e0, #fff0e0);">
+        <i class="fas fa-gift fa-2x" style="color:#f4a261;"></i>
+        <h3 class="fw-bold mt-2">Buy 1 Get 1 Free</h3>
+        <p>On Zero-Waste Starter Kits (Beeswax wraps + cotton bags)</p>
+        <button class="btn btn-dark rounded-pill w-50 mt-2 add-to-cart" data-id="15" data-name="BOGO Starter Kit" data-price="0" data-img="">Grab Offer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT US SECTION -->
+  <div class="row my-5 g-5 align-items-center about-us-story p-4 p-md-5">
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=500&fit=crop" class="img-fluid rounded-4 shadow" alt="about surya grocery">
+    </div>
+    <div class="col-md-6">
+      <span class="badge bg-success bg-opacity-25 text-success px-3 py-2 rounded-pill mb-3">Our Story</span>
+      <h2 class="fw-bold display-6">Delivering <span style="color:#f4a261;">Freshness</span> with Purpose</h2>
+      <p class="lead">Central Mart is a USA-based eco-grocery platform committed to reducing food miles and plastic waste. Founded in 2025, we partner with local organic farms and use Central Mart-driven logistics to ensure zero-compromise on quality.</p>
+      <div class="d-flex gap-3 mt-3">
+        <div><i class="fas fa-truck-fast fs-4 text-success"></i><br>Same-day delivery</div>
+        <div><i class="fas fa-recycle fs-4 text-success"></i><br>100% plastic-neutral</div>
+        <div><i class="fas fa-hand-holding-heart fs-4 text-success"></i><br>Farmers first</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seasonal harvest boxes -->
+  <div class="row mt-5 mb-4">
+    <div class="col-12">
+      <h2 class="section-modern-title">📦 Seasonal Harvest Boxes</h2>
+      <p>Curated by our Central Mart for peak freshness & variety</p>
+    </div>
+  </div>
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="product-card-fresh overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop" class="img-fluid" style="height: 200px; width:100%; object-fit:cover;">
+        <div class="p-3">
+          <h5>Family Green Box</h5>
+          <p>8 organic items + reusable tote</p>
+          <button class="btn-gradient-surya add-to-cart" data-id="16" data-name="Family Green Box" data-price="34.99" data-img="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="product-card-fresh overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=600&h=400&fit=crop" class="img-fluid" style="height: 200px; width:100%; object-fit:cover;">
+        <div class="p-3">
+          <h5>Protein Power Box</h5>
+          <p>Tofu, legumes, nuts & seeds</p>
+          <button class="btn-gradient-surya add-to-cart" data-id="17" data-name="Protein Power Box" data-price="29.99" data-img="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="product-card-fresh overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop" class="img-fluid" style="height: 200px; width:100%; object-fit:cover;">
+        <div class="p-3">
+          <h5>Fruit Lover's Basket</h5>
+          <p>Seasonal berries, citrus & apples</p>
+          <button class="btn-gradient-surya add-to-cart" data-id="18" data-name="Fruit Lover's Basket" data-price="27.99" data-img="https://images.unsplash.com/photo-1542838132-92c53300491e?w=80&h=80&fit=crop">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sustainability Counter & Trust Badge -->
+  <div class="row my-5 bg-white rounded-4 p-4 shadow-sm">
+    <div class="col-md-4 text-center"><i class="fas fa-globe-americas fa-3x text-success"></i><h3 class="fw-bold mt-2">12,450+</h3><p>lbs CO₂ offset</p></div>
+    <div class="col-md-4 text-center"><i class="fas fa-tree fa-3x text-success"></i><h3 class="fw-bold mt-2">1,890</h3><p>Trees planted</p></div>
+    <div class="col-md-4 text-center"><i class="fas fa-users fa-3x text-success"></i><h3 class="fw-bold mt-2">4,200+</h3><p>Happy families</p></div>
+  </div>
+
+  <!-- ========== NEW TESTIMONIALS SECTION ========== -->
+  <div class="row mt-5 mb-4">
+    <div class="col-12 text-center">
+      <h2 class="section-modern-title">💚 What Our Customers Say</h2>
+      <p class="text-muted">Join thousands of happy families enjoying fresh, sustainable groceries</p>
+    </div>
+  </div>
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="testimonial-card">
+        <div class="star-rating mb-2">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="mb-3">"Absolutely love the quality of produce! The packaging is completely plastic-free and everything arrives fresh. The zero-waste initiative is amazing."</p>
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-img" alt="customer">
+          <div><h6 class="mb-0 fw-bold">Sarah Johnson</h6><small class="text-muted">Austin, TX</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="testimonial-card">
+        <div class="star-rating mb-2">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="mb-3">"Finally a grocery service that cares about the planet! The Central Mart freshness score is impressive. My family loves the seasonal harvest boxes."</p>
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/men/52.jpg" class="testimonial-img" alt="customer">
+          <div><h6 class="mb-0 fw-bold">Michael Chen</h6><small class="text-muted">San Francisco, CA</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="testimonial-card">
+        <div class="star-rating mb-2">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="mb-3">"The customer service is outstanding! They replaced a damaged item immediately. Plus, knowing each order plants a tree makes me feel good."</p>
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/28.jpg" class="testimonial-img" alt="customer">
+          <div><h6 class="mb-0 fw-bold">Emily Rodriguez</h6><small class="text-muted">Miami, FL</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== NEW FAQ SECTION ========== -->
+  <div class="row mt-5 mb-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="section-modern-title">❓ Frequently Asked Questions</h2>
+      <p class="text-muted">Everything you need to know about our eco-grocery service</p>
+    </div>
+    <div class="col-lg-8 mx-auto">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-leaf text-success me-2"></i> How does your zero-waste packaging work?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">We use 100% compostable mailers, recycled paper padding, and glass jars for storage. All plastic is eliminated from our supply chain. Our delivery bags are made from plant-based materials that break down in 90 days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-truck-fast text-success me-2"></i> What areas do you deliver to?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">We currently deliver to 12 states including California, Texas, New York, Florida, Illinois, Pennsylvania, Ohio, Georgia, North Carolina, Michigan, Washington, and Arizona. We're expanding to more states every month!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-tree text-success me-2"></i> How does the "1 order = 1 tree" program work?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">For every order placed, we partner with One Tree Planted to plant a tree in US national forests. You'll receive a certificate with the location of your tree. We've already planted over 1,890 trees!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-box text-success me-2"></i> Can I return items if I'm not satisfied?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Yes! For fresh produce, contact us within 24 hours of delivery for a full refund. Non-perishable items can be returned within 14 days unopened. Our quality guarantee ensures you're always satisfied.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-microchip text-success me-2"></i> What is the Central Mart Freshness Score?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Our Central Mart system tracks produce from farm to delivery using sensors and predictive analytics. It gives each item a freshness score (90-100%) so you know exactly when your groceries were harvested and how fresh they'll stay.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span><i class="fas fa-hand-holding-usd text-success me-2"></i> Do you offer subscription discounts?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">Absolutely! Subscribe to our Seasonal Harvest Box and save 15% on every delivery. You can pause, skip, or cancel anytime. Plus, subscribers get early access to new products and exclusive offers.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i>Your Cart <span id="cartItemCount">(0)</span></h5>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsList">
+    <div class="text-center text-muted py-5">Your cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div class="d-flex justify-content-between mb-3"><span>Subtotal:</span><span class="fw-bold" id="cartSubtotal">$0.00</span></div>
+    <button class="btn-checkout-cart" id="checkoutBtn"><i class="fas fa-lock me-2"></i>Proceed to Checkout</button>
+    <p class="small text-muted text-center mt-2">Free shipping on orders $35+</p>
+  </div>
+</div>
+
+<!-- Footer with Policy Pages -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-4" style="background-color: #14261e !important;">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5><i class="fas fa-store me-2"></i>Central Mart</h5>
+        <p class="small text-white-50">USA's most innovative eco-grocery platform. Fresh, sustainable, delivered.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Explore</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="/" class="text-white-50">Home</a></li>
+          <li><a href="shop.html" class="text-white-50">Shop</a></li>
+          <li><a href="about.html" class="text-white-50">About</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Policy Pages</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="privacy.html" class="text-white-50">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-white-50">Terms of Service</a></li>
+          <li><a href="shipping.html" class="text-white-50">Shipping Policy</a></li>
+          <li><a href="returns.html" class="text-white-50">Return & Refund</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <address class="small text-white-50"><i class="fas fa-map-marker-alt"></i> 101 Green Lane, Austin, TX<br>
+        <i class="fas fa-phone"></i> +1 (888) 787-7769<br>
+        <i class="fas fa-envelope"></i> support@centralmart.com</address>
+      </div>
+    </div>
+    <hr class="mt-3">
+    <div class="text-center small text-white-50">&copy; 2026 Central Mart – Fresh, Ethical, Smart Grocery.</div>
+  </div>
+</footer>
+
+<!-- Maintenance Modal -->
+<div class="modal fade maintenance-modal" id="maintenanceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 2rem;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="fas fa-tools me-2"></i>Maintenance Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <i class="fas fa-database fa-4x mb-3" style="color:#f4a261;"></i>
+        
+        <p class="text-muted">Website maintenance is in progress. Our team is upgrading the system for a better eco-shopping experience. Please check back soon!</p>
+        <div class="bg-light p-2 rounded small">⏱️ Estimated downtime: 2 hours. Thank you for your patience.</div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Cart Array
+  let cart = [];
+  
+  // DOM Elements
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartItemCountSpan = document.getElementById('cartItemCount');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalSpan = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const maintenanceModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+  
+  // Open/Close Cart
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+  openCartBtn.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  // Add to Cart Function
+  function addToCart(product) {
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) { existingItem.quantity += 1; } 
+    else { cart.push({ ...product, quantity: 1 }); }
+    updateCartUI();
+    openCart();
+  }
+  
+  // Remove from Cart
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+  }
+  
+  // Update Quantity
+  function updateQuantity(productId, newQuantity) {
+    if (newQuantity <= 0) { removeFromCart(productId); return; }
+    const item = cart.find(item => item.id === productId);
+    if (item) item.quantity = newQuantity;
+    updateCartUI();
+  }
+  
+  // Update Cart UI
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartItemCountSpan.innerText = `(${totalItems})`;
+    cartCountBadge.innerText = totalItems;
+    cartSubtotalSpan.innerText = `$${subtotal.toFixed(2)}`;
+    
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = '<div class="text-center text-muted py-5">Your cart is empty</div>';
+      return;
+    }
+    
+    cartItemsList.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+        <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+          <div class="d-flex align-items-center gap-2 mt-2">
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+            <span class="mx-2">${item.quantity}</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            <button class="btn btn-sm btn-outline-danger ms-2 rounded-pill" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+    `).join('');
+  }
+  
+  // Add to Cart Event Listeners for all product buttons
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const product = {
+        id: parseInt(btn.dataset.id),
+        name: btn.dataset.name,
+        price: parseFloat(btn.dataset.price),
+        img: btn.dataset.img || 'https://via.placeholder.com/80?text=Product'
+      };
+      addToCart(product);
+    });
+  });
+  
+  // Checkout Button - Opens Maintenance Modal
+  checkoutBtn.addEventListener('click', () => { maintenanceModal.show(); });
+  
+  // Make functions global for onclick handlers
+  window.updateQuantity = updateQuantity;
+  window.removeFromCart = removeFromCart;
+  
+  // FAQ Accordion Functionality
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = question.querySelector('.faq-icon');
+    
+    question.addEventListener('click', () => {
+      const isOpen = answer.classList.contains('show');
+      // Close all other FAQs
+      document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('show'));
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.remove('fa-chevron-up'));
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.add('fa-chevron-down'));
+      
+      if (!isOpen) {
+        answer.classList.add('show');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Central Mart | Terms of Service - Eco Grocery, USA</title>
+  <!-- Bootstrap 5 + Font Awesome + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2333a55e'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3E⚖️%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fefaf2; color: #1e2a24; overflow-x: hidden; }
+    h1, h2, h3, h4, .navbar-brand, .btn { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .navbar-surya { background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0; }
+    .policy-hero { background: linear-gradient(125deg, #eef5e6 0%, #fff6ea 100%); padding: 3rem 0 2.5rem; border-radius: 0 0 3rem 3rem; margin-bottom: 3rem; }
+    .policy-content { background: white; border-radius: 2rem; padding: 2.5rem; box-shadow: 0 15px 35px -12px rgba(0,0,0,0.05); border: 1px solid #eef2e2; }
+    .policy-content h2 { color: #1e462e; font-size: 1.6rem; margin-top: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+    .policy-content h3 { color: #2c6e49; font-size: 1.3rem; margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 600; }
+    .policy-content p { line-height: 1.7; margin-bottom: 1rem; color: #3a4a3e; }
+    .policy-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+    .policy-content li { margin-bottom: 0.5rem; color: #3a4a3e; }
+    .last-updated { background: #e8f3e8; padding: 0.8rem 1.2rem; border-radius: 1rem; display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .footer-surya a { text-decoration: none; color: #cbdecb; transition: 0.2s; }
+    .footer-surya a:hover { color: #f4a261; }
+    .cart-sidebar { position: fixed; top: 0; right: -450px; width: 420px; max-width: 90%; height: 100vh; background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1); z-index: 1050; transition: right 0.3s ease; display: flex; flex-direction: column; }
+    .cart-sidebar.open { right: 0; }
+    .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1040; display: none; }
+    .cart-overlay.show { display: block; }
+    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #eef2e2; background: #fefaf2; }
+    .cart-items { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #f0e6d8; }
+    .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-weight: 600; font-size: 0.9rem; }
+    .cart-item-price { color: #2c6e49; font-weight: 600; }
+    .cart-footer { padding: 1.2rem; border-top: 1px solid #eef2e2; background: white; }
+    .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+    .btn-checkout-cart { background: #2c6e49; border: none; border-radius: 40px; padding: 0.8rem; font-weight: 700; color: white; width: 100%; transition: 0.2s; }
+    .btn-checkout-cart:hover { background: #1f543a; transform: scale(0.98); }
+    @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } .policy-content { padding: 1.5rem; } }
+    .maintenance-modal .modal-content { border-radius: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-2" href="/" style="color: #2c6e49;"><i class="fas fa-store me-2"></i>Central<span style="color:#f4a261;"> Mart</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#suryaNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="suryaNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="shop.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn cart-icon-btn position-relative" id="openCartBtn" style="background: none; border: none; font-size: 1.3rem; color:#2c6e49;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="cartCountBadge" style="background:#f4a261; color:#1e2a24;">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Policy Hero Section -->
+<div class="policy-hero">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold" style="color:#14382a;">Terms of <span style="color:#f4a261;">Service</span></h1>
+    <p class="lead">Please read these terms carefully before using our services.</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="policy-content">
+    <div class="last-updated">
+      <i class="fas fa-calendar-alt me-2"></i> Effective Date: January 15, 2026
+    </div>
+    
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using Central Mart ("we," "our," "us") website and services, you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our services.</p>
+    
+    <h2>2. Description of Services</h2>
+    <p>Central Mart provides an online grocery e-commerce platform connecting customers with local organic farms and sustainable products across the USA. Our services include product listings, order processing, delivery coordination, and customer support.</p>
+    
+    <h2>3. Account Registration</h2>
+    <p>To place orders, you must create an account. You agree to:</p>
+    <ul>
+      <li>Provide accurate, current, and complete information</li>
+      <li>Maintain the security of your password and account</li>
+      <li>Accept responsibility for all activities under your account</li>
+      <li>Notify us immediately of any unauthorized use</li>
+    </ul>
+    
+    <h2>4. Ordering and Payment</h2>
+    <p>All orders are subject to acceptance and availability. By placing an order, you agree to pay the stated price including any applicable taxes and delivery fees. We accept major credit cards, debit cards, and digital payment methods. Prices are subject to change without notice.</p>
+    
+    <h2>5. Pricing and Promotions</h2>
+    <p>We strive to display accurate pricing. However, errors may occur. If a product is listed at an incorrect price, we reserve the right to cancel or refuse orders. Promotional codes are subject to specific terms and may expire.</p>
+    
+    <h2>6. Shipping and Delivery</h2>
+    <p>We deliver to select locations across the USA. Delivery times are estimates and not guaranteed. Risk of loss transfers to you upon delivery. Please ensure someone is available to receive fresh produce items.</p>
+    
+    <h2>7. Returns and Refunds</h2>
+    <p>Due to the perishable nature of grocery items, we have a limited return policy:</p>
+    <ul>
+      <li>Quality issues must be reported within 24 hours of delivery</li>
+      <li>Refunds are processed within 5-7 business days</li>
+      <li>Non-perishable items may be returned within 14 days unopened</li>
+    </ul>
+    
+    <h2>8. Product Information</h2>
+    <p>We make every effort to display accurate product descriptions and images. However, we do not warrant that product descriptions or other content are error-free. Organic certifications and sourcing information is provided by our farm partners.</p>
+    
+    <h2>9. Prohibited Activities</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use our services for any illegal purpose</li>
+      <li>Attempt to gain unauthorized access to our systems</li>
+      <li>Interfere with or disrupt our services</li>
+      <li>Resell products for commercial purposes without authorization</li>
+      <li>Submit false or misleading information</li>
+    </ul>
+    
+    <h2>10. Intellectual Property</h2>
+    <p>All content on this website including text, graphics, logos, images, and software is the property of Central Mart or our content suppliers and is protected by copyright laws. You may not reproduce, distribute, or create derivative works without permission.</p>
+    
+    <h2>11. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, Central Mart shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services. Our total liability shall not exceed the amount you paid for the specific order giving rise to the claim.</p>
+    
+    <h2>12. Disclaimer of Warranties</h2>
+    <p>Our services are provided "as is" without warranties of any kind. We do not guarantee that the website will be uninterrupted, secure, or error-free. Fresh produce quality may vary based on seasonal and growing conditions.</p>
+    
+    <h2>13. Indemnification</h2>
+    <p>You agree to indemnify and hold harmless Central Mart and our employees, partners, and affiliates from any claims, damages, or expenses arising from your violation of these terms or your use of our services.</p>
+    
+    <h2>14. Termination</h2>
+    <p>We reserve the right to suspend or terminate your account at our sole discretion, without notice, for conduct that violates these terms or is harmful to other users or our business.</p>
+    
+    <h2>15. Governing Law</h2>
+    <p>These terms shall be governed by and construed in accordance with the laws of the State of Texas, without regard to conflict of law principles. Any disputes shall be resolved in the courts of Travis County, Texas.</p>
+    
+    <h2>16. Changes to Terms</h2>
+    <p>We may modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms. Please review this page periodically.</p>
+    
+    <h2>17. Contact Information</h2>
+    <p>For questions about these Terms of Service, please contact us at:</p>
+    <p><i class="fas fa-envelope me-2"></i> legal@centralmart.com<br>
+    <i class="fas fa-phone me-2"></i> +1 (888) 787-7769<br>
+    <i class="fas fa-map-marker-alt me-2"></i> 101 Green Lane, Austin, TX 78701</p>
+  </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i>Your Cart <span id="cartItemCount">(0)</span></h5>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsList">
+    <div class="text-center text-muted py-5">Your cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div class="d-flex justify-content-between mb-3"><span>Subtotal:</span><span class="fw-bold" id="cartSubtotal">$0.00</span></div>
+    <button class="btn-checkout-cart" id="checkoutBtn"><i class="fas fa-lock me-2"></i>Proceed to Checkout</button>
+    <p class="small text-muted text-center mt-2">Free shipping on orders $35+</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-4" style="background-color: #14261e !important;">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5><i class="fas fa-store me-2"></i>Central Mart</h5>
+        <p class="small text-white-50">USA's most innovative eco-grocery platform. Fresh, sustainable, delivered.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Explore</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="/" class="text-white-50">Home</a></li>
+          <li><a href="shop.html" class="text-white-50">Shop</a></li>
+          <li><a href="about.html" class="text-white-50">About</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Policy Pages</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="privacy.html" class="text-white-50">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-white-50">Terms of Service</a></li>
+          <li><a href="shipping.html" class="text-white-50">Shipping Policy</a></li>
+          <li><a href="returns.html" class="text-white-50">Return & Refund</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <address class="small text-white-50"><i class="fas fa-map-marker-alt"></i> 101 Green Lane, Austin, TX<br>
+        <i class="fas fa-phone"></i> +1 (888) 787-7769<br>
+        <i class="fas fa-envelope"></i> support@centralmart.com</address>
+      </div>
+    </div>
+    <hr class="mt-3">
+    <div class="text-center small text-white-50">&copy; 2026 Central Mart – Fresh, Ethical, Smart Grocery.</div>
+  </div>
+</footer>
+
+<!-- Maintenance Modal -->
+<div class="modal fade maintenance-modal" id="maintenanceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 2rem;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="fas fa-tools me-2"></i>Maintenance Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <i class="fas fa-database fa-4x mb-3" style="color:#f4a261;"></i>
+        
+        <p class="text-muted">Website maintenance is in progress. Please check back soon!</p>
+        <div class="bg-light p-2 rounded small">⏱️ Estimated downtime: 2 hours. Thank you for your patience.</div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cart = [];
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartItemCountSpan = document.getElementById('cartItemCount');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalSpan = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const maintenanceModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+  
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+  openCartBtn.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartItemCountSpan.innerText = `(${totalItems})`;
+    cartCountBadge.innerText = totalItems;
+    cartSubtotalSpan.innerText = `$${subtotal.toFixed(2)}`;
+    if (cart.length === 0) { cartItemsList.innerHTML = '<div class="text-center text-muted py-5">Your cart is empty</div>'; return; }
+    cartItemsList.innerHTML = cart.map(item => `<div class="cart-item"><img src="${item.img}" class="cart-item-img"><div class="cart-item-details"><div class="cart-item-title">${item.name}</div><div class="cart-item-price">$${item.price.toFixed(2)}</div><div class="d-flex align-items-center gap-2 mt-2"><button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button><span class="mx-2">${item.quantity}</span><button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button><button class="btn btn-sm btn-outline-danger ms-2 rounded-pill" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button></div></div><div class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</div></div>`).join('');
+  }
+  function removeFromCart(productId) { cart = cart.filter(item => item.id !== productId); updateCartUI(); }
+  function updateQuantity(productId, newQuantity) { if (newQuantity <= 0) { removeFromCart(productId); return; } const item = cart.find(item => item.id === productId); if (item) item.quantity = newQuantity; updateCartUI(); }
+  checkoutBtn.addEventListener('click', () => { maintenanceModal.show(); });
+  window.updateQuantity = updateQuantity; window.removeFromCart = removeFromCart;
+</script>
+</body>
+</html>

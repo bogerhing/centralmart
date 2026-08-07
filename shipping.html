@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Central Mart | Shipping Policy - Eco Grocery, USA</title>
+  <!-- Bootstrap 5 + Font Awesome + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2333a55e'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3E🚚%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fefaf2; color: #1e2a24; overflow-x: hidden; }
+    h1, h2, h3, h4, .navbar-brand, .btn { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .navbar-surya { background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0; }
+    .policy-hero { background: linear-gradient(125deg, #eef5e6 0%, #fff6ea 100%); padding: 3rem 0 2.5rem; border-radius: 0 0 3rem 3rem; margin-bottom: 3rem; }
+    .policy-content { background: white; border-radius: 2rem; padding: 2.5rem; box-shadow: 0 15px 35px -12px rgba(0,0,0,0.05); border: 1px solid #eef2e2; }
+    .policy-content h2 { color: #1e462e; font-size: 1.6rem; margin-top: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+    .policy-content h3 { color: #2c6e49; font-size: 1.3rem; margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 600; }
+    .policy-content p { line-height: 1.7; margin-bottom: 1rem; color: #3a4a3e; }
+    .policy-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+    .policy-content li { margin-bottom: 0.5rem; color: #3a4a3e; }
+    .policy-content table { width: 100%; margin-bottom: 1.5rem; border-collapse: collapse; }
+    .policy-content th, .policy-content td { border: 1px solid #e2e8da; padding: 0.8rem; text-align: left; }
+    .policy-content th { background: #eef5e6; font-weight: 600; }
+    .last-updated { background: #e8f3e8; padding: 0.8rem 1.2rem; border-radius: 1rem; display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .shipping-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #e3f2e8; padding: 0.5rem 1rem; border-radius: 2rem; margin-right: 1rem; margin-bottom: 0.5rem; }
+    .footer-surya a { text-decoration: none; color: #cbdecb; transition: 0.2s; }
+    .footer-surya a:hover { color: #f4a261; }
+    /* Cart Sidebar Styles */
+    .cart-sidebar { position: fixed; top: 0; right: -450px; width: 420px; max-width: 90%; height: 100vh; background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1); z-index: 1050; transition: right 0.3s ease; display: flex; flex-direction: column; }
+    .cart-sidebar.open { right: 0; }
+    .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1040; display: none; }
+    .cart-overlay.show { display: block; }
+    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #eef2e2; background: #fefaf2; }
+    .cart-items { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #f0e6d8; }
+    .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-weight: 600; font-size: 0.9rem; }
+    .cart-item-price { color: #2c6e49; font-weight: 600; }
+    .cart-footer { padding: 1.2rem; border-top: 1px solid #eef2e2; background: white; }
+    .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+    .btn-checkout-cart { background: #2c6e49; border: none; border-radius: 40px; padding: 0.8rem; font-weight: 700; color: white; width: 100%; transition: 0.2s; }
+    .btn-checkout-cart:hover { background: #1f543a; transform: scale(0.98); }
+    @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } .policy-content { padding: 1.5rem; } .policy-content table { font-size: 0.8rem; } }
+    .maintenance-modal .modal-content { border-radius: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 253, 245, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8da; padding: 0.8rem 0;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-2" href="/" style="color: #2c6e49;"><i class="fas fa-store me-2"></i>Central<span style="color:#f4a261;"> Mart</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#suryaNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="suryaNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="shop.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn cart-icon-btn position-relative" id="openCartBtn" style="background: none; border: none; font-size: 1.3rem; color:#2c6e49;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="cartCountBadge" style="background:#f4a261; color:#1e2a24;">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Policy Hero Section -->
+<div class="policy-hero">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold" style="color:#14382a;">Shipping <span style="color:#f4a261;">Policy</span></h1>
+    <p class="lead">Fast, fresh, and eco-friendly delivery across the USA</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="policy-content">
+    <div class="last-updated">
+      <i class="fas fa-calendar-alt me-2"></i> Last Updated: January 15, 2026
+    </div>
+    
+    <div class="mb-4">
+      <span class="shipping-badge"><i class="fas fa-tree text-success"></i> Carbon-neutral delivery</span>
+      <span class="shipping-badge"><i class="fas fa-box text-success"></i> Eco-friendly packaging</span>
+      <span class="shipping-badge"><i class="fas fa-truck-fast text-success"></i> Real-time tracking</span>
+    </div>
+    
+    <h2>1. Delivery Areas</h2>
+    <p>We currently deliver to the following US states: California, Texas, New York, Florida, Illinois, Pennsylvania, Ohio, Georgia, North Carolina, Michigan, Washington, and Arizona. We are actively expanding to more states. Enter your zip code at checkout to confirm delivery availability.</p>
+    
+    <h2>2. Shipping Rates</h2>
+    <table>
+      <thead>
+        <tr><th>Order Value</th><th>Standard Shipping</th><th>Express Shipping</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>$0 - $34.99</td><td>$5.99</td><td>$9.99</td></tr>
+        <tr><td>$35 - $69.99</td><td><strong class="text-success">FREE</strong></td><td>$5.99</td></tr>
+        <tr><td>$70+</td><td><strong class="text-success">FREE</strong></td><td><strong class="text-success">FREE</strong></td></tr>
+      </tbody>
+    </table>
+    
+    <h2>3. Delivery Timeframes</h2>
+    <p>Delivery times vary based on your location and selected shipping method. Estimated delivery times are calculated from the date of order confirmation.</p>
+    <ul>
+      <li><strong>Standard Shipping:</strong> 2-4 business days</li>
+      <li><strong>Express Shipping:</strong> 1-2 business days</li>
+      <li><strong>Same-Day Delivery:</strong> Available in select metro areas (Austin, NYC, LA, Chicago) - order before 11 AM</li>
+    </ul>
+    
+    <h2>4. Order Processing Time</h2>
+    <p>Orders are processed within 24 hours of placement (Monday-Friday). Orders placed on weekends or holidays will be processed the next business day. You will receive a confirmation email with tracking information once your order ships.</p>
+    
+    <h2>5. Fresh Produce Guarantee</h2>
+    <p>We take extra care to ensure your fresh produce arrives in optimal condition. Our eco-cool packaging maintains freshness during transit. If your produce arrives damaged or spoiled, please contact us within 24 hours for a full refund or replacement.</p>
+    
+    <h2>6. Tracking Your Order</h2>
+    <p>Once your order ships, you will receive:</p>
+    <ul>
+      <li>Email notification with tracking number</li>
+      <li>SMS updates (if opted in)</li>
+      <li>Real-time tracking via your account dashboard</li>
+    </ul>
+    
+    <h2>7. Delivery Instructions</h2>
+    <p>You can provide special delivery instructions at checkout (e.g., "leave at back door," "call upon arrival"). Our delivery partners will follow these instructions when possible. Central Mart is not responsible for lost packages after delivery confirmation.</p>
+    
+    <h2>8. Missed Deliveries</h2>
+    <p>If you are not available to receive your delivery:</p>
+    <ul>
+      <li>Perishable items will be returned to our local hub</li>
+      <li>You will be contacted to reschedule delivery (additional fees may apply)</li>
+      <li>After 48 hours, unclaimed perishable orders may be donated to local food banks</li>
+    </ul>
+    
+    <h2>9. Shipping to P.O. Boxes</h2>
+    <p>Due to the perishable nature of our products, we do not ship to P.O. Boxes. A physical street address is required for delivery.</p>
+    
+    <h2>10. International Shipping</h2>
+    <p>Currently, we only ship within the United States. We do not offer international shipping at this time.</p>
+    
+    <h2>11. Weather Delays</h2>
+    <p>Extreme weather conditions may cause delivery delays. We will notify you of any significant delays and take extra measures to preserve product quality during transit.</p>
+    
+    <h2>12. Contact Shipping Support</h2>
+    <p>For shipping-related questions or issues, please contact our support team:</p>
+    <p><i class="fas fa-envelope me-2"></i> shipping@centralmart.com<br>
+    <i class="fas fa-phone me-2"></i> +1 (888) 787-7769<br>
+    <i class="fas fa-clock me-2"></i> Monday-Friday, 9AM - 6PM EST</p>
+  </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i>Your Cart <span id="cartItemCount">(0)</span></h5>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsList">
+    <div class="text-center text-muted py-5">Your cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div class="d-flex justify-content-between mb-3"><span>Subtotal:</span><span class="fw-bold" id="cartSubtotal">$0.00</span></div>
+    <button class="btn-checkout-cart" id="checkoutBtn"><i class="fas fa-lock me-2"></i>Proceed to Checkout</button>
+    <p class="small text-muted text-center mt-2">Free shipping on orders $35+</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-4" style="background-color: #14261e !important;">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5><i class="fas fa-store me-2"></i>Central Mart</h5>
+        <p class="small text-white-50">USA's most innovative eco-grocery platform. Fresh, sustainable, delivered.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Explore</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="/" class="text-white-50">Home</a></li>
+          <li><a href="shop.html" class="text-white-50">Shop</a></li>
+          <li><a href="about.html" class="text-white-50">About</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Policy Pages</h6>
+        <ul class="list-unstyled footer-surya">
+          <li><a href="privacy.html" class="text-white-50">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-white-50">Terms of Service</a></li>
+          <li><a href="shipping.html" class="text-white-50">Shipping Policy</a></li>
+          <li><a href="returns.html" class="text-white-50">Return & Refund</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <address class="small text-white-50"><i class="fas fa-map-marker-alt"></i> 101 Green Lane, Austin, TX<br>
+        <i class="fas fa-phone"></i> +1 (888) 787-7769<br>
+        <i class="fas fa-envelope"></i> support@centralmart.com</address>
+      </div>
+    </div>
+    <hr class="mt-3">
+    <div class="text-center small text-white-50">&copy; 2026 Central Mart – Fresh, Ethical, Smart Grocery.</div>
+  </div>
+</footer>
+
+<!-- Maintenance Modal -->
+<div class="modal fade maintenance-modal" id="maintenanceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 2rem;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="fas fa-tools me-2"></i>Maintenance Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <i class="fas fa-database fa-4x mb-3" style="color:#f4a261;"></i>
+        
+        <p class="text-muted">Website maintenance is in progress. Please check back soon!</p>
+        <div class="bg-light p-2 rounded small">⏱️ Estimated downtime: 2 hours. Thank you for your patience.</div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cart = [];
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartItemCountSpan = document.getElementById('cartItemCount');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalSpan = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const maintenanceModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+  
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+  openCartBtn.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartItemCountSpan.innerText = `(${totalItems})`;
+    cartCountBadge.innerText = totalItems;
+    cartSubtotalSpan.innerText = `$${subtotal.toFixed(2)}`;
+    if (cart.length === 0) { cartItemsList.innerHTML = '<div class="text-center text-muted py-5">Your cart is empty</div>'; return; }
+    cartItemsList.innerHTML = cart.map(item => `<div class="cart-item"><img src="${item.img}" class="cart-item-img"><div class="cart-item-details"><div class="cart-item-title">${item.name}</div><div class="cart-item-price">$${item.price.toFixed(2)}</div><div class="d-flex align-items-center gap-2 mt-2"><button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button><span class="mx-2">${item.quantity}</span><button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button><button class="btn btn-sm btn-outline-danger ms-2 rounded-pill" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button></div></div><div class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</div></div>`).join('');
+  }
+  function removeFromCart(productId) { cart = cart.filter(item => item.id !== productId); updateCartUI(); }
+  function updateQuantity(productId, newQuantity) { if (newQuantity <= 0) { removeFromCart(productId); return; } const item = cart.find(item => item.id === productId); if (item) item.quantity = newQuantity; updateCartUI(); }
+  checkoutBtn.addEventListener('click', () => { maintenanceModal.show(); });
+  window.updateQuantity = updateQuantity; window.removeFromCart = removeFromCart;
+</script>
+</body>
+</html>
